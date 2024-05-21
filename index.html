@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LLM Prompt Customization</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Create LLM Prompts</h1>
+
+        <div class="mb-4">
+            <button type="button" class="btn btn-info" onclick="setPreset('preset1')">Preset 1</button>
+            <button type="button" class="btn btn-info" onclick="setPreset('preset2')">Preset 2</button>
+            <button type="button" class="btn btn-info" onclick="setPreset('preset3')">Preset 3</button>
+        </div>
+        <hr>
+        <form id="prompt-form" class="mt-4">
+            <div class="form-group">
+                <label for="system-prompt">System Prompt:</label>
+                <textarea id="system-prompt" class="form-control" required>### System:\nYou are an AI assistant that follows instruction extremely well. Help as much as you can.\n\n</textarea>
+            </div>
+            <div class="form-group">
+                <label for="prompt-template">Prompt Template:</label>
+                <textarea id="prompt-template" class="form-control" required>### User:\n{0}\n\n### Response:\n</textarea>
+            </div>
+            <div class="form-group">
+                <label for="user-instruction">User Instruction:</label>
+                <textarea id="user-instruction" class="form-control" required></textarea>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="max-tokens">Max Tokens:</label>
+                    <input type="number" id="max-tokens" class="form-control" value="200">
+                </div> 
+                <div class="form-group">
+                    <label for="top-k">Top K:</label>
+                    <input type="number" id="top-k" class="form-control" value="40">
+                </div>
+
+                <div class="form-group">
+                    <label for="repeat-last-n">Repeat Last N:</label>
+                    <input type="number" id="repeat-last-n" class="form-control" value="64">
+                </div>
+                <div class="form-group">
+                    <label for="n-batch">N Batch:</label>
+                    <input type="number" id="n-batch" class="form-control" value="8">
+                </div>
+                <div class="form-group">
+                    <label for="n-predict">N Predict:</label>
+                    <input type="number" id="n-predict" class="form-control" value="200">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="top-p">Top P:</label>
+                    <input type="range" id="top-p" class="form-control" min="0.01" max="0.99" step="0.01" value="0.4">
+                    <span id="top-p-value">0.9</span>
+                </div>
+                <div class="form-group">
+                    <label for="min-p">Min P:</label>
+                    <input type="range" id="min-p" class="form-control" min="0.00" max="0.99" step="0.01" value="0.00">
+                    <span id="min-p-value">0.1</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="temp">Temperature:</label>
+                <input type="range" id="temp" class="form-control" min="0.01" max="0.99" step="0.01" value="0.5">
+                <span id="temp-value">0.5</span>
+            </div>
+
+
+            <div class="form-group">
+                <label for="repeat-penalty">Repeat Penalty:</label>
+                <input type="range" id="repeat-penalty" class="form-control" min="0.25" max="3" step="0.01" value="1.25">
+                <span id="repeat-penalty-value">1.0</span>
+            </div>
+
+            <input type="submit" class="btn btn-primary" value="Generate">
+        </form>
+
+        <h2 class="mt-4">Response:</h2>
+        <div id="response" class="alert alert-info" role="alert"></div>
+    </div>
+
+    <!-- Include jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="./scripts.js"></script>
+    <script src="./presets.js"></script>
+</body>
+</html>
